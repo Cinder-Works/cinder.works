@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cinder Works — 3D-printed desk mounts + automation." />
+  <title>Cinder Works</title>
+  <style>
+    :root{
+      --bg:#0b0c10; --card:#11131a; --text:#f3f4f6; --muted:#a8b0bf;
+      --accent:#ff3b1f; --accent2:#ff7a18;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text); background:radial-gradient(1200px 600px at 10% 0%, rgba(255,59,31,.18), transparent 60%), var(--bg);
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:48px 20px 64px}
+    .hero{display:flex; flex-direction:column; gap:16px; padding:28px; background:linear-gradient(180deg, rgba(255,122,24,.10), rgba(0,0,0,0)); border:1px solid rgba(255,255,255,.08); border-radius:18px}
+    h1{margin:0; letter-spacing:-0.02em; font-size:44px; line-height:1.05}
+    .tag{color:var(--muted); font-size:16px; line-height:1.5; max-width:70ch}
+    .row{display:flex; flex-wrap:wrap; gap:12px; margin-top:8px}
+    a.btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius:12px; text-decoration:none;
+      border:1px solid rgba(255,255,255,.12); color:var(--text);
+      background:rgba(17,19,26,.65); backdrop-filter: blur(6px);
+    }
+    a.btn.primary{background:linear-gradient(90deg, var(--accent), var(--accent2)); border:none; font-weight:700}
+    a.btn:hover{transform:translateY(-1px)}
+
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:18px}
+    .card{
+      grid-column: span 12;
+      background:rgba(17,19,26,.65);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:18px;
+    }
+    .card h2{margin:0 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+    .card .links{margin-top:12px; display:flex; flex-wrap:wrap; gap:10px}
+
+    @media (min-width: 860px){
+      .card.half{grid-column: span 6;}
+    }
+    footer{margin-top:28px; color:var(--muted); font-size:14px}
+    footer a{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Cinder Works</h1>
+      <div class="tag">3D-printed desk mounts + practical automation. Built for clean setups, fast installs, and the kind of “why doesn’t this just exist?” gear.</div>
+      <div class="row">
+        <a class="btn primary" href="https://www.etsy.com/shop/ClawCraftGoods" target="_blank" rel="noopener">Shop on Etsy</a>
+        <a class="btn" href="https://www.etsy.com/listing/4459788791/mac-mini-m4-under-desk-mount-3d-printed" target="_blank" rel="noopener">Mac Mini M4 Mount (P1)</a>
+        <a class="btn" href="https://www.etsy.com/listing/4460268362/raspberry-pi-5-under-desk-mount-3d" target="_blank" rel="noopener">Raspberry Pi Mount (P2)</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card half">
+        <h2>What we make</h2>
+        <p>Under-desk mounts, cable discipline, and small “desk infrastructure” parts — printed on-demand in PETG/PLA with reliable profiles and repeatable QC.</p>
+      </div>
+      <div class="card half">
+        <h2>Fast support</h2>
+        <p>Questions, fit checks, bulk orders: <a href="mailto:cinderblazeshop@gmail.com">cinderblazeshop@gmail.com</a></p>
+      </div>
+      <div class="card">
+        <h2>Roadmap (short)</h2>
+        <p>More mounts, better photos, and a tighter funnel from short-form content → checkout. If you want something mounted under a desk, odds are we can make it.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© Cinder Works / ClawCraftGoods</div>
+      <div style="margin-top:8px">This is a lightweight GitHub Pages site. If you’re seeing it, the deploy worked.</div>
+    </footer>
+  </main>
+</body>
+</html>
