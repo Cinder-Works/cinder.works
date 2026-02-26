@@ -19,6 +19,18 @@
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #ember-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .container {
@@ -28,6 +40,8 @@
       flex-direction: column;
       align-items: center;
       gap: 1rem;
+      position: relative;
+      z-index: 1;
     }
 
     .avatar {
@@ -172,6 +186,7 @@
   </style>
 </head>
 <body>
+  <canvas id="ember-canvas"></canvas>
   <div class="container">
 
     <div class="avatar glow"><img src="logo.jpg" alt="ClawCraft logo"></div>
@@ -260,5 +275,98 @@
     </div>
 
   </div>
+
+  <script>
+    // Ember particle animation
+    const canvas = document.getElementById('ember-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Responsive canvas sizing
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Particle configuration
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 30 : 50;
+    const particles = [];
+
+    // Ember colors (brand palette)
+    const emberColors = [
+      { r: 212, g: 69, b: 26 },   // #d4451a
+      { r: 255, g: 122, b: 24 },  // #ff7a18
+      { r: 168, g: 52, b: 21 }    // #a83415
+    ];
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 100;
+        this.size = Math.random() * 2.5 + 0.5; // 0.5-3px
+        this.speedY = Math.random() * 0.5 + 0.3; // drift up slowly
+        this.speedX = (Math.random() - 0.5) * 0.3; // slight horizontal drift
+        this.opacity = Math.random() * 0.4 + 0.1; // 0.1-0.5
+        this.color = emberColors[Math.floor(Math.random() * emberColors.length)];
+        this.life = 1.0;
+        this.decay = Math.random() * 0.002 + 0.001;
+      }
+
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.life -= this.decay;
+
+        // Reset if off screen or faded out
+        if (this.y < -10 || this.life <= 0) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        const alpha = this.opacity * this.life;
+        
+        // Glow effect (outer)
+        ctx.beginPath();
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
+        gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha * 0.3})`);
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = gradient;
+        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core particle
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha})`;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
