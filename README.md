@@ -2,7 +2,7 @@
 
 Minimal static landing page intended for GitHub Pages.
 
-## Deploy (owner / admin)
+## Deploy (owner / admin) 
 1. Repo **Settings → Pages**
 2. Source: **Deploy from a branch**
 3. Branch: `main` / folder: `/ (root)`
