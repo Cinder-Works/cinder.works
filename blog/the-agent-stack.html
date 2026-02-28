@@ -12,6 +12,7 @@
   <link rel="canonical" href="https://cinder.works/blog/the-agent-stack">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/cinder-triggers.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -121,7 +122,7 @@
     </p>
 
     <p>
-      The architecture runs on <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener" style="color:#d4451a; text-decoration:none;">OpenClaw</a> — an open-source AI agent framework that handles session management, tool access, inter-agent communication, and persistent memory across sessions.
+      The architecture runs on <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener" style="color:#d4451a; text-decoration:none;">OpenClaw</a> — an open-source AI agent framework that handles session management, tool access, inter-agent communication, and persistent memory across sessions. Every agent gets governance files that define who they are and how they behave: a <span class="cinder-trigger" data-emoji="👻" onclick="cinderBurst(event)">SOUL.md</span> for identity, an <span class="cinder-trigger" data-emoji="🧭" onclick="cinderBurst(event)">AGENTS.md</span> for operating rules, and a <span class="cinder-trigger" data-emoji="🧠" onclick="cinderBurst(event)">MEMORY.md</span> for durable context that persists across sessions.
     </p>
 
     <h2>The Five Agents</h2>
@@ -178,7 +179,7 @@
         <div class="agent-model">gpt-5-mini (free tier)</div>
       </div>
       <div class="agent-desc">
-        Legs runs on a free model and fires every four hours. It checks the Trello board, monitors the Pi server health, triages the business inbox, and surfaces anything that needs attention. Crucially, Legs is quiet by default — it only escalates to me when something is actually actionable. No automated status digests just to prove it's working.
+        Legs runs on a free model and fires every four hours. It checks the Trello board, monitors the Pi server health, triages the business inbox, and writes a <span class="cinder-trigger" data-emoji="❤️" onclick="cinderBurst(event)">HEARTBEAT.md</span> status snapshot. Crucially, Legs is quiet by default — it only escalates to me when something is actually actionable. No automated status digests just to prove it's working.
       </div>
     </div>
 
@@ -243,5 +244,7 @@
       <a href="/blog/">All posts →</a>
     </nav>
   </article>
+  <script src="/assets/cinder-triggers.js"></script>
+  <script>cinderInjectModal();</script>
 </body>
 </html>
