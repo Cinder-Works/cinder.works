@@ -6,9 +6,21 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://cinder.works/products/pcb-keychain</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://cinder.works/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cinder.works/blog/custom-keychains-parametric-pivot</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://cinder.works/blog/day-8-zero-sales</loc>
