@@ -12,6 +12,7 @@
   <meta property="og:type" content="product">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/cinder-triggers.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -377,12 +378,8 @@
     </div>
     
     <div class="cta-section">
-      <a href="#notify" class="cta-button" id="cta-btn">🔥 Get Notified When It Drops</a>
+      <button class="cta-button" onclick="cinderInjectModal(); cinderOpenModal();">🔥 Get Notified When It Drops</button>
       <p class="cta-note">Launching soon. First 10 buyers get The Files for $14.</p>
-      <div id="notify-form" style="display:none; margin-top: 1.5rem;">
-        <p style="color: #64ffda; font-weight: 600; margin-bottom: 0.5rem;">DM @blalaze on TikTok to get first access.</p>
-        <p style="color: #888;">Or follow <a href="https://www.tiktok.com/@blalaze" style="color: #ff6b35;">@blalaze</a> for the launch announcement.</p>
-      </div>
     </div>
     
     <div class="footer">
@@ -391,12 +388,6 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('cta-btn').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('notify-form').style.display = 'block';
-      this.style.display = 'none';
-    });
-  </script>
+  <script src="/assets/cinder-triggers.js"></script>
 </body>
 </html>
