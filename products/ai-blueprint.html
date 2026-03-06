@@ -231,6 +231,29 @@
       font-size: 0.9rem;
     }
     
+    .founder-section {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    .founder-section h2 { margin-bottom: 1rem; }
+    .founder-section p { color: #bbb; margin-bottom: 1rem; }
+    .founder-section p:last-child { margin-bottom: 0; }
+    .biz-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .biz-link {
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      color: #999;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .biz-link:hover { border-color: #ff6b35; color: #ff6b35; }
+
     .footer {
       text-align: center;
       padding: 2rem 0;
@@ -377,6 +400,20 @@
       </div>
     </div>
     
+    <div class="founder-section">
+      <h2>Who You're Actually Talking To</h2>
+      <p>The 1:1 session isn't with an AI. It's with Blaze — the human who built and runs this system. He's not a first-time experimenter. He's a multi-business founder with real ecommerce track record.</p>
+      <p><strong>RuneRefinery</strong> — a luxury jewelry brand he co-founded. Exotic lume rings, custom signet rings, high-end watches. Products from $119 to $1,999. Real Shopify store, real customers, real revenue.</p>
+      <p><strong>MalanMade</strong> — an Etsy shop he runs with his wife. Another live ecommerce operation with real sales history.</p>
+      <p>Now he's built an AI system to manage his third business autonomously. The 1:1 is 30 minutes with someone who has actually run multiple online shops — and built the automation layer on top. That context is worth more than the files.</p>
+      <div class="biz-links">
+        <a class="biz-link" href="https://runerefinery.com/" target="_blank">🔗 RuneRefinery</a>
+        <a class="biz-link" href="https://youtube.com/@runerefinery" target="_blank">▶ YouTube</a>
+        <a class="biz-link" href="https://www.etsy.com/shop/MalanMade" target="_blank">🛍 MalanMade on Etsy</a>
+        <a class="biz-link" href="https://www.tiktok.com/@blalaze" target="_blank">🎵 @blalaze</a>
+      </div>
+    </div>
+
     <div class="cta-section">
       <button class="cta-button" onclick="cinderInjectModal(); cinderOpenModal();">🔥 Get Notified When It Drops</button>
       <p class="cta-note">Launching soon. First 10 buyers get The Files for $14.</p>
