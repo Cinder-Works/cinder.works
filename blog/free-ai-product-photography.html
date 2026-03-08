@@ -207,6 +207,61 @@
     }
     .specs-table tr:last-child td { border-bottom: none; }
     .highlight { color: #d4451a; font-weight: 600; }
+    .comparison {
+      margin: 32px 0;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .comparison-label {
+      padding: 16px 20px 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .comparison-side {
+      position: relative;
+    }
+    .comparison-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .comparison-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-before {
+      background: rgba(100,100,100,0.85);
+      color: #fff;
+    }
+    .badge-after {
+      background: rgba(212,69,26,0.9);
+      color: #fff;
+    }
+    .comparison-divider {
+      width: 2px;
+      background: #333;
+    }
+    @media (max-width: 500px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
     .footer-nav {
       margin-top: 60px;
       padding-top: 24px;
@@ -250,6 +305,52 @@
     <p><strong>60 seconds later, you have a professional product shot.</strong></p>
 
     <p>The AI model (FLUX Kontext Dev) is instruction-based. You tell it what to do in plain English. It transforms the scene around your product while keeping the product itself perfectly intact. Text on products stays readable. Colors stay accurate. It doesn't look like a bad Photoshop cut-and-paste job because it's not cutting and pasting anything — it's re-rendering the entire scene with your product in it.</p>
+
+    <h2>See It For Yourself</h2>
+
+    <p>Phone photo on the left. AI output on the right. Same product, 60 seconds apart.</p>
+
+    <div class="comparison">
+      <div class="comparison-label">Raspberry Pi 5 Mount</div>
+      <div class="comparison-grid">
+        <div class="comparison-side">
+          <span class="comparison-badge badge-before">Before</span>
+          <img src="/blog/images/cinders-flow/pi-before.jpg" alt="Pi mount raw phone photo on wood table" loading="lazy">
+        </div>
+        <div class="comparison-side">
+          <span class="comparison-badge badge-after">After</span>
+          <img src="/blog/images/cinders-flow/pi-after.jpg" alt="Pi mount AI-generated product shot with dramatic lighting" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison">
+      <div class="comparison-label">Mac Mini M4 Mount</div>
+      <div class="comparison-grid">
+        <div class="comparison-side">
+          <span class="comparison-badge badge-before">Before</span>
+          <img src="/blog/images/cinders-flow/mac-before.jpg" alt="Mac Mini mount raw phone photo on wood table" loading="lazy">
+        </div>
+        <div class="comparison-side">
+          <span class="comparison-badge badge-after">After</span>
+          <img src="/blog/images/cinders-flow/mac-after.jpg" alt="Mac Mini mount AI-generated product shot with dramatic lighting" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison">
+      <div class="comparison-label">Custom Name Keychains</div>
+      <div class="comparison-grid">
+        <div class="comparison-side">
+          <span class="comparison-badge badge-before">Before</span>
+          <img src="/blog/images/cinders-flow/keychains-before.jpg" alt="Keychains raw photo on 3D printer bed" loading="lazy">
+        </div>
+        <div class="comparison-side">
+          <span class="comparison-badge badge-after">After</span>
+          <img src="/blog/images/cinders-flow/keychains-after.jpg" alt="Keychains AI-generated product shot with tools and dramatic lighting" loading="lazy">
+        </div>
+      </div>
+    </div>
 
     <h2>Why This Is Different</h2>
 
