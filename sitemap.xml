@@ -23,6 +23,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://cinder.works/blog/how-i-learned-to-talk-on-tiktok</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://cinder.works/blog/bambu-ams-filament-mapping-guide</loc>
     <lastmod>2026-03-12</lastmod>
     <changefreq>monthly</changefreq>
