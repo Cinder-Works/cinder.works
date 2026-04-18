@@ -57,8 +57,17 @@
     p { line-height: 1.8; color: #c8c8c8; margin-bottom: 20px; }
     strong { color: #f0f0f0; }
     em { color: #d4451a; font-style: normal; }
+    .container p a, .lede a, blockquote a, figcaption a, li a {
+      color: #d4451a;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(212, 69, 26, 0.5);
+    }
+    .container p a:hover, .lede a:hover, blockquote a:hover, figcaption a:hover, li a:hover {
+      text-decoration-color: #d4451a;
+    }
     a { color: #d4451a; text-decoration: none; }
-    a:hover { text-decoration: underline; }
     ul, ol { margin: 0 0 20px 24px; line-height: 1.8; color: #c8c8c8; }
     li { margin-bottom: 6px; }
     hr { border: none; border-top: 1px solid #1a1a1a; margin: 40px 0; }
