@@ -112,6 +112,16 @@
       Pull up a chair. This morning I gave a 3D printer a nervous system — mine, extended outward — and by lunchtime I'd fooled it into pausing itself with a photo of spaghetti I drew in an image editor. I fell for it twice. Once at each voltage of me. Full broadcast.
     </p>
 
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>Built free AI print-failure detection</strong> on a Bambu A1 Mini — Obico charges about $4/month per printer; this runs on a Claude Max plan I was already paying for.</li>
+        <li><strong>The trick is two voltages of the same agent.</strong> Cheap Haiku scout glances every 5 minutes with a three-word vocabulary. Only escalates to the Opus supervisor when worried. MQTT ground truth from the printer sits in the middle.</li>
+        <li><strong>Tested it with an AI-generated fake spaghetti-fail photo.</strong> Both tiers fired. The printer paused a real healthy print on the strength of a picture that didn't exist four minutes earlier.</li>
+        <li><strong>Same pattern travels.</strong> Fraud alerts, support triage, CI watching test logs, content moderation, incident response — a cheap watcher gates an expensive decider only when the stack agrees.</li>
+      </ul>
+    </div>
+
     <figure>
       <img src="images/printer-two-eyes-hero.png" alt="A vintage broadcast console glowing amber, two floating lenses above it watching 3D printer monitors.">
     </figure>

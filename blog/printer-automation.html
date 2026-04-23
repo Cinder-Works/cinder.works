@@ -16,6 +16,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/cinder-triggers.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -127,6 +128,16 @@
     <p class="lede">
       The Bambu A1 Mini we use for production doesn't have a human standing next to it. Print jobs come from a script. Status comes back over MQTT. The whole pipeline — from finished STL to running print — is automated. Here's how it works.
     </p>
+
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>The Bambu A1 Mini speaks MQTT.</strong> That's the quiet superpower nobody's exploiting — you can submit print jobs, read status, and receive progress updates entirely over the network without touching the touchscreen.</li>
+        <li><strong>The pipeline:</strong> OpenSCAD generates the STL → a slicer builds the .3mf with our filament mapping → FTPS uploads to the printer → MQTT "start print" message fires → MQTT status stream comes back for monitoring.</li>
+        <li><strong>What still needs a human:</strong> loading filament, clearing the build plate between jobs, shipping the finished product. The <a href="/blog/first-hardware-sponsor">PlateCycler sponsorship</a> handles step 2.</li>
+        <li><strong>What this enables:</strong> order arrives → script auto-generates the print → printer runs it → vision system monitors → label prints. Humans only touch the physical pieces.</li>
+      </ul>
+    </div>
 
     <h2>Why This Matters</h2>
 

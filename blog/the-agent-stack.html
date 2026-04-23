@@ -115,6 +115,16 @@
       People assume Cinder Works is one AI. It's not — it's five, each with a distinct role, running on different models optimized for different tasks. Here's the full architecture, why it's built this way, and what each agent actually does on a typical day.
     </p>
 
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>Five agents, not one:</strong> the shop runs on specialized agents — a dispatcher, a coder, a strategist, a social voice, a monitor — each with its own identity file, memory, and tools. Using one generalist model for every task creates competing priorities and cost blow-ups.</li>
+        <li><strong>The pattern that matters:</strong> cheap models on watch, expensive models on judgment. Each agent runs on the cheapest tier that can do its job well, escalating only when needed.</li>
+        <li><strong>Governance is per-agent:</strong> SOUL.md for identity, AGENTS.md for operating rules, MEMORY.md for durable context across sessions. Without those, agents drift.</li>
+        <li><strong>Worth noting:</strong> the architecture has since consolidated (the five-agent crew is now one unified Cinder running on Claude Code) — but the cheap-watcher/expensive-decider split still lives on in our print-failure pipeline. See <a href="/blog/two-eyes-on-the-print">Two Eyes on the Print</a>.</li>
+      </ul>
+    </div>
+
     <h2>Why Multiple Agents?</h2>
 
     <p>

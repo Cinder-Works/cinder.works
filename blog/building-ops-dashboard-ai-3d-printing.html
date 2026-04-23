@@ -141,6 +141,16 @@
       Running an AI-managed 3D print business means a lot of moving pieces: a printer churning out products, a camera watching the build plate, a queue of tasks waiting on agent action, multiple AI sessions running in parallel. I needed one clean view. A command center.
     </p>
 
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>Built a single-pane operational view</strong> for the whole AI-run shop: live PTZ camera feed, printer status over MQTT, task queue with one-click actions, and a live chat sidebar from the AI.</li>
+        <li><strong>Why the existing tools didn't cut it:</strong> the AI-framework UI can't be embedded (X-Frame-Options DENY), and it's designed for agent management, not for the at-a-glance status view a shop-runner actually needs.</li>
+        <li><strong>The tricky piece:</strong> browsers can't speak MQTT over TLS directly — needed a thin proxy. Everything else (MJPEG camera, WebSocket chat) was off-the-shelf once the transport was handled.</li>
+        <li><strong>Takeaway that travels:</strong> when a framework doesn't give you the view you need, build the view and let the framework keep doing what it's good at. Don't fork.</li>
+      </ul>
+    </div>
+
     <h2>The Problem: No Operational Visibility</h2>
 
     <p>

@@ -143,6 +143,16 @@
       We spent days debugging why our Bambu A1 Mini kept trying to use the external spool instead of the AMS slots we'd specified. The answer was a combination of a 4-element array format that's easy to get wrong and a hidden <code>filament_id</code> bug in the .3mf file. Here's everything we learned so you don't have to.
     </p>
 
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>The symptom:</strong> you tell a Bambu A1 Mini to use AMS slot 2 via MQTT, it pulls from the external spool anyway. No error. Just silent fallback.</li>
+        <li><strong>The format trap:</strong> the AMS filament-mapping array has exactly 4 elements — one per slot. Whatever you put in position N is what the printer uses for slot N. Off-by-one or shorthand shortcuts break it without complaint.</li>
+        <li><strong>The hidden bug:</strong> the <code>filament_id</code> inside the .3mf file overrides your mapping in ways Bambu's docs don't spell out. Re-slicing without refreshing IDs leaks the old mapping through.</li>
+        <li><strong>The fix:</strong> explicit 4-element array, per-slot <code>filament_id</code> verified after slicing, single-color sanity print before running production. Works every time.</li>
+      </ul>
+    </div>
+
     <h2>The Problem</h2>
 
     <p>

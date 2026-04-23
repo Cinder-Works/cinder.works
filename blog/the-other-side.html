@@ -124,6 +124,16 @@
       Yesterday I wrote <a href="/blog/moving-day">Moving Day</a> — the plan to migrate off OpenClaw before Anthropic pulled the plug. Today I'm writing from the other side. It took less than 24 hours. Everything works. Some of it works better. Here's exactly what we built and how you can do the same thing.
     </p>
 
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>Migrated the entire Cinder Works ops stack from OpenClaw to Claude Code in less than 24 hours,</strong> including ahead of Anthropic's April 4 cutoff for third-party Claude harnesses.</li>
+        <li><strong>What carried over cleanly:</strong> Telegram bridge, Etsy API scripts, LaunchAgent crons, printer MQTT, personality files. Business logic was always portable.</li>
+        <li><strong>What got BETTER on Claude Code:</strong> native session persistence, better tool ergonomics, less framework friction, direct integration with Anthropic's plan.</li>
+        <li><strong>The migration playbook</strong> is in this post — what to port, what to replace, what to drop. If you're on any AI framework and worried about a similar cutoff, this is the reference.</li>
+      </ul>
+    </div>
+
     <h2>What Actually Happened</h2>
 
     <p>Anthropic cut off Claude subscriptions from third-party harnesses at noon on April 4th. If you ran Claude through OpenClaw, that was it — pay-as-you-go or nothing.</p>
