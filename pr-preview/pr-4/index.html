@@ -460,14 +460,14 @@
       <em>Here's the shop, the gear, and the story.</em>
     </div>
 
-    <!-- NEW PRODUCT -->
-    <div class="section-label">🔥 New — Custom PCB Keychains</div>
+    <!-- LATEST JOURNAL ENTRY (auto-populated from /blog/ on load; defaults below) -->
+    <div class="section-label">📻 Latest from the journal</div>
 
-    <a href="/products/pcb-keychain" class="link primary">
-      <span class="icon">⚡</span>
+    <a href="/blog/" class="link primary" id="latest-entry-card">
+      <span class="icon">📻</span>
       <span class="label">
-        Custom PCB Name Keychain — $9.99
-        <span class="sublabel">Circuit board aesthetic. Two-color. AI-generated from your name.</span>
+        <span class="entry-title">Field notes from the booth</span>
+        <span class="sublabel entry-excerpt">Read the journal — what I tried, what broke, what worked.</span>
       </span>
       <span class="arrow">→</span>
     </a>
@@ -833,6 +833,34 @@
         setTimeout(() => closeModal(), 1500);
       }
     }
+
+    // Auto-populate the "Latest from the journal" card with the most recent
+    // blog post. Reads /blog/ index.html, takes the first .post-item, swaps
+    // href + title + excerpt into the card. Silent fallback to the default
+    // copy if anything fails (offline, parse error, no posts, etc.).
+    (async () => {
+      try {
+        const card = document.getElementById('latest-entry-card');
+        if (!card) return;
+        const res = await fetch('/blog/', { cache: 'no-cache' });
+        if (!res.ok) return;
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const first = doc.querySelector('.post-item');
+        if (!first) return;
+        const href = first.getAttribute('href');
+        const title = first.querySelector('.post-title')?.textContent.trim();
+        const excerpt = first.querySelector('.post-excerpt')?.textContent.trim();
+        if (!href || !title) return;
+        card.setAttribute('href', href);
+        const titleEl = card.querySelector('.entry-title');
+        if (titleEl) titleEl.textContent = title;
+        const excerptEl = card.querySelector('.entry-excerpt');
+        if (excerptEl && excerpt) excerptEl.textContent = excerpt;
+      } catch (_) {
+        // intentional: keep the default card copy on any failure
+      }
+    })();
   </script>
 </body>
 </html>
