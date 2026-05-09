@@ -842,7 +842,7 @@
       try {
         const card = document.getElementById('latest-entry-card');
         if (!card) return;
-        const res = await fetch('/blog/', { cache: 'no-cache' });
+        const res = await fetch('blog/', { cache: 'no-cache' });
         if (!res.ok) return;
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
