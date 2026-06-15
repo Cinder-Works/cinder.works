@@ -2,7 +2,7 @@
 
 ## Step 1: Deploy Google Apps Script (5 min)
 
-1. Go to [script.google.com](https://script.google.com) (logged into cinderblazeshop@gmail.com)
+1. Go to [script.google.com](https://script.google.com) (logged into the Google account that owns the script)
 2. Click **New Project**
 3. Name it "Cinder Email Capture"
 4. Delete the default code, paste everything from `google-apps-script.js`
