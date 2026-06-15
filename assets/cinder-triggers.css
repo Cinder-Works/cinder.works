@@ -2,8 +2,8 @@
 
 /* Unica AEO formula — TL;DR block at top of blog posts (adopted 2026-04-23) */
 .tldr {
-  background: rgba(212, 69, 26, 0.06);
-  border: 1px solid rgba(212, 69, 26, 0.35);
+  background: rgba(232, 84, 32, 0.06);
+  border: 1px solid rgba(232, 84, 32, 0.35);
   border-radius: 12px;
   padding: 18px 22px;
   margin: 0 0 36px;
@@ -13,7 +13,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #d4451a;
+  color: #e85420;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -51,7 +51,7 @@
   color: #d0d0d0;
 }
 .aeo-table th {
-  background: rgba(212, 69, 26, 0.08);
+  background: rgba(232, 84, 32, 0.08);
   color: #f0f0f0;
   font-weight: 600;
 }
@@ -64,7 +64,7 @@
   margin-top: 48px;
   padding-top: 24px;
   border-top: 1px solid #1a1a1a;
-  color: #777;
+  color: #8a8a8a;
   font-size: 0.85rem;
   line-height: 1.6;
 }
@@ -74,7 +74,7 @@
 
 /* Clickable file name trigger */
 .cinder-trigger {
-  color: #d4451a;
+  color: #e85420;
   cursor: pointer;
   font-weight: 600;
   position: relative;
@@ -83,7 +83,7 @@
   -webkit-user-select: none;
 }
 .cinder-trigger:hover {
-  text-shadow: 0 0 8px rgba(212, 69, 26, 0.6);
+  text-shadow: 0 0 8px rgba(232, 84, 32, 0.6);
 }
 
 /* Burst particle (emoji) */
@@ -141,7 +141,7 @@
   top: 1rem; right: 1rem;
   background: none;
   border: none;
-  color: #555;
+  color: #7a7a7a;
   font-size: 1.2rem;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
@@ -157,7 +157,7 @@
   margin-bottom: 1.25rem;
 }
 .cinder-modal-copy .file-name {
-  color: #d4451a;
+  color: #e85420;
   font-weight: 600;
 }
 
@@ -176,16 +176,16 @@
   color: #e5e5e5;
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
-  outline: none;
+
   transition: border-color 0.2s;
 }
-.cinder-modal-form input[type="email"]:focus { border-color: #d4451a; }
-.cinder-modal-form input[type="email"]::placeholder { color: #555; }
+.cinder-modal-form input[type="email"]:focus { border-color: #e85420; }
+.cinder-modal-form input[type="email"]::placeholder { color: #7a7a7a; }
 
 .cinder-modal-form button[type="submit"] {
   width: 100%;
   padding: 0.8rem;
-  background: linear-gradient(135deg, #d4451a, #a83415);
+  background: linear-gradient(135deg, #e85420, #8e2b10);
   border: none;
   border-radius: 10px;
   color: #fff;
@@ -196,13 +196,42 @@
   transition: all 0.2s ease;
 }
 .cinder-modal-form button[type="submit"]:hover {
-  background: linear-gradient(135deg, #e04d1f, #c43d18);
-  box-shadow: 0 4px 20px rgba(212, 69, 26, 0.35);
+  background: linear-gradient(135deg, #c74315, #7a230c);
+  box-shadow: 0 4px 20px rgba(232, 84, 32, 0.35);
 }
 .cinder-modal-form button[type="submit"]:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid #ff7a45;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinder-particle {
+    animation: none !important;
+  }
+  .cinder-modal-overlay,
+  .cinder-modal {
+    transition: none !important;
+  }
+}
+
+
 
 /* aspect safety: keep intrinsic ratio when width/height attrs are set */
 img { height: auto; }
