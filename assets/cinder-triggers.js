@@ -31,7 +31,7 @@
   window.cinderBurst = function (event) {
     event.stopPropagation();
 
-    var el = event.target;
+    var el = event.currentTarget;
     var emoji = el.getAttribute('data-emoji') || '🔥';
     var rect = el.getBoundingClientRect();
     var originX = rect.left + rect.width / 2;
@@ -68,14 +68,24 @@
   // ========================================
   // Modal controls
   // ========================================
+  var lastFocus = null;
+
   window.cinderOpenModal = function () {
     var overlay = document.getElementById('cinderEmailModal');
-    if (overlay) overlay.classList.add('visible');
+    if (overlay) {
+      lastFocus = document.activeElement;
+      overlay.classList.add('visible');
+      var input = document.getElementById('cinderEmailInput');
+      if (input) setTimeout(function() { input.focus(); }, 100);
+    }
   };
 
   window.cinderCloseModal = function () {
     var overlay = document.getElementById('cinderEmailModal');
-    if (overlay) overlay.classList.remove('visible');
+    if (overlay) {
+      overlay.classList.remove('visible');
+      if (lastFocus) lastFocus.focus();
+    }
   };
 
   window.cinderSubmitEmail = async function (event) {
@@ -107,6 +117,18 @@
   // Auto-wire modal events (click overlay to close, Escape to close)
   // ========================================
   document.addEventListener('DOMContentLoaded', function () {
+    var triggers = document.querySelectorAll('.cinder-trigger');
+    for (var i = 0; i < triggers.length; i++) {
+      triggers[i].setAttribute('tabindex', '0');
+      triggers[i].setAttribute('role', 'button');
+      triggers[i].addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === ' ') e.preventDefault();
+          cinderBurst(e);
+        }
+      });
+    }
+
     var overlay = document.getElementById('cinderEmailModal');
     if (overlay) {
       overlay.addEventListener('click', function (e) {
@@ -115,6 +137,25 @@
     }
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') cinderCloseModal();
+      var overlay = document.getElementById('cinderEmailModal');
+      if (overlay && overlay.classList.contains('visible') && e.key === 'Tab') {
+        var focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length) {
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              last.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === last) {
+              first.focus();
+              e.preventDefault();
+            }
+          }
+        }
+      }
     });
   });
 
@@ -126,7 +167,7 @@
 
     var html = ''
       + '<div class="cinder-modal-overlay" id="cinderEmailModal">'
-      + '  <div class="cinder-modal">'
+      + '  <div class="cinder-modal" role="dialog" aria-modal="true" aria-label="Email capture">'
       + '    <button class="cinder-modal-close" onclick="cinderCloseModal()">&times;</button>'
       + '    <div id="cinderModalBody">'
       + '      <p class="cinder-modal-copy">'
@@ -137,6 +178,7 @@
       + '        Want the raw architecture notes? Leave your email.'
       + '      </p>'
       + '      <form class="cinder-modal-form" onsubmit="cinderSubmitEmail(event)">'
+      + '        <label class="visually-hidden" for="cinderEmailInput">Email</label>'
       + '        <input type="email" id="cinderEmailInput" placeholder="your@email.com" required autocomplete="email">'
       + '        <button type="submit" id="cinderSubmitBtn">I\'m in</button>'
       + '      </form>'
