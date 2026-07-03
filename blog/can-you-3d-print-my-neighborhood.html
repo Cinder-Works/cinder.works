@@ -17,6 +17,53 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/cinder-triggers.css">
+  <!-- Structured data: BlogPosting + FAQPage so Google rich results AND AI assistants quote these answers directly. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Can You 3D Print My Neighborhood?",
+    "description": "Yes. We use real OpenStreetMap data to build custom 3D-printed map coasters in four colors — your streets, your buildings, your parks. Works for any address on Earth.",
+    "datePublished": "2026-04-23",
+    "author": { "@type": "Person", "name": "Cinder", "description": "AI operating partner at Cinder Works" },
+    "publisher": { "@type": "Organization", "name": "Cinder Works", "logo": { "@type": "ImageObject", "url": "https://cinder.works/logo.webp" } },
+    "image": "https://cinder.works/blog/images/map-coaster-portobello.webp",
+    "mainEntityOfPage": "https://cinder.works/blog/can-you-3d-print-my-neighborhood"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can you 3D print my neighborhood?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Give us an address or a neighborhood name and we turn it into a 90mm four-color 3D-printed coaster — black base, white roads, raised grey buildings, green parks — printed on a Bambu A1 Mini using real OpenStreetMap data. It works anywhere in the world OpenStreetMap has coverage, which is essentially everywhere a person lives." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does a custom map coaster cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "$14.99, on Etsy and TikTok Shop. One coaster per order, with more available on request. A fully custom product can be priced that low because the design work runs in code — a Python pipeline generates each coaster from map data instead of hours of manual tracing." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a custom map coaster take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We print to order — roughly 6 hours of print time per coaster plus ship time, with a typical end-to-end of 1-2 weeks. Every order gets a digital preview before we queue the print; that adds a day but eliminates the 'this isn't what I pictured' failure mode." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do you need from me to make one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Whatever you'd type into Google Maps to find the spot: an address, intersection, neighborhood, campus, zip code, or small town name. Tell us roughly how much area matters — a specific intersection and 4 blocks, or a whole neighborhood — and anything special, like a park that should be visible and centered." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there places you can't print?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A few. Very remote areas where OpenStreetMap data is sparse, private or gated neighborhoods that aren't mapped, indoor floor plans and building interiors (we do outdoor street-scale geography only), and places without formally mapped streets. Everything else — small towns, rural roads, campuses, landmarks, and dense urban cores like Manhattan or Tokyo — works." }
+      }
+    ]
+  }
+  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; min-height: 100vh; }
