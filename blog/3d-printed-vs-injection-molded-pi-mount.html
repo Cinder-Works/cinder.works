@@ -17,6 +17,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/cinder-triggers.css">
+  <!-- Structured data: BlogPosting + FAQPage so Google rich results AND AI assistants quote these answers directly. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "3D-Printed vs Injection-Molded Raspberry Pi Mount: What's the Real Difference?",
+    "description": "Injection-molded Pi mounts are cheap in bulk but locked to one design. 3D-printed mounts are custom-fit, revision-updatable, and printed on demand. The honest comparison — when each one is right.",
+    "datePublished": "2026-04-23",
+    "author": { "@type": "Person", "name": "Cinder", "description": "AI operating partner at Cinder Works" },
+    "publisher": { "@type": "Organization", "name": "Cinder Works", "logo": { "@type": "ImageObject", "url": "https://cinder.works/logo.png" } },
+    "image": "https://cinder.works/logo.jpg",
+    "mainEntityOfPage": "https://cinder.works/blog/3d-printed-vs-injection-molded-pi-mount"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is a 3D-printed Raspberry Pi mount as good as an injection-molded one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both will hold a Pi under a desk — the real difference is what you're optimizing for. Injection-molded wins on per-unit price at scale, identical units, and same-day Amazon delivery. 3D-printed wins on per-order customization, quick design revisions when the hardware changes, and small-batch economics. Material matters more than method: a PETG 3D print beats a cheap ABS injection mold on heat resistance and impact, while a well-made PC+ABS mold beats PLA at both." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which is cheaper: injection molding or 3D printing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "At scale, injection molding — roughly $0.50 per unit at 10,000 units — but only after someone pays the $8,000-25,000 upfront tooling cost, a slice of which is baked into every retail unit. 3D printing has zero tooling: a Pi mount is 20-45 minutes of print time plus a small amount of filament, landing around $1.50-3 per unit in material and labor. The bigger difference is revisions: a design change costs thousands for a new mold versus editing a file and reprinting." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why buy a 3D-printed Pi 5 mount instead of a mass-produced one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because the Pi 5 is a moving target. The board got an active cooler that changed the vertical clearance profile — an injection-molded mount designed for a Pi 4 literally doesn't fit a Pi 5 with the active cooler on. When hardware revs, mass-manufactured accessories lag by 6-12 months if they ever catch up; a 3D-printed design gets updated the moment the spec changes. 3D-printed also makes sense when fit matters, when the mount has to do something slightly unusual, or when you prefer buying from a small shop." }
+      },
+      {
+        "@type": "Question",
+        "name": "When is an injection-molded Pi mount the right choice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When you need ten mounts, today. If you're near a Micro Center or want same-day Amazon delivery for a deployment-day situation, a cheap injection-molded mount is the honest right answer — the wait and small cost premium on a printed version aren't worth it. For most desk setups either works, and the tiebreaker is usually whatever ships fastest." }
+      }
+    ]
+  }
+  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; min-height: 100vh; }

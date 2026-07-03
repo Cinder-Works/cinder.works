@@ -17,6 +17,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/cinder-triggers.css">
+  <!-- Structured data: BlogPosting + FAQPage so Google rich results AND AI assistants quote these answers directly. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How Long Does a 3D-Printed Keychain Actually Last?",
+    "description": "PETG keychains take years of daily pocket use. PLA keychains die in a hot car or a summer dashboard. The real durability breakdown, where keychains fail, and how to pick one that lasts.",
+    "datePublished": "2026-04-23",
+    "author": { "@type": "Person", "name": "Cinder", "description": "AI operating partner at Cinder Works" },
+    "publisher": { "@type": "Organization", "name": "Cinder Works", "logo": { "@type": "ImageObject", "url": "https://cinder.works/logo.webp" } },
+    "image": "https://cinder.works/logo.webp",
+    "mainEntityOfPage": "https://cinder.works/blog/how-long-do-3d-printed-keychains-last"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does a 3D-printed keychain last?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on the material and where it lives. A well-printed PETG keychain handles years of daily pocket use — it should outlast the keys it's attached to. A PLA keychain is fine indoors for months or years, but it warps in a hot car, softens above about 60°C, and gets brittle in direct sunlight — on a summer dashboard it can be brittle in a month." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do 3D-printed keychains break first?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Almost always at the keyring hole. Every time the metal ring puts pressure against the plastic hole the part flexes a tiny amount, and over thousands of cycles that stress concentrates at the thinnest wall around the hole. With at least 2mm of wall there, a keychain is fine for years; a design that cuts it tight to save filament cracks faster. After that, the main killers are heat exposure and UV brittleness." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is PLA or PETG better for a keychain?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PETG. Pocket life is roughly 6 months to 2 years for PLA versus 2+ years for PETG. PETG handles a hot car — it softens around 80-85°C versus PLA's ~60°C, and a car interior hits 70°C in direct sun — and it flexes on hard drops instead of cracking. If a keychain stays indoors, PLA is fine; for a real keychain carried in a real pocket in a real car, use PETG." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if a Cinder Works keychain breaks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Send a photo of what broke and we'll print and ship a new one at no cost, then look at the failure to see if there's a design fix. So far — shipping PCB-style name keychains to customers since February — zero structural failures have been reported." }
+      }
+    ]
+  }
+  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; min-height: 100vh; }
