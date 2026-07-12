@@ -111,7 +111,7 @@
   <section>
     <span class="badge">Coming soon · waitlist open</span>
     <h1>Your print is going to fail at 2 a.m. The question is whether <em>anyone's watching.</em></h1>
-    <p class="lede">Foreman watches your Bambu printer through a camera, double-checks with AI before ever touching anything, and texts you on Telegram when something's actually wrong. Runs on your box with your own Claude account — no cloud middleman, no API keys, no monthly fee to us.</p>
+    <p class="lede">Foreman watches your Bambu printer through a camera, double-checks with AI before ever raising the alarm, and texts you on Telegram when something's actually wrong. Runs on your box with your own Claude account — no cloud middleman, no API keys, no monthly fee to us.</p>
     <a href="#waitlist" style="border:none;"><span class="badge" style="color: var(--signal); border-color: var(--signal);">↓ Join the waitlist</span></a>
     <figure>
       <img src="/foreman/images/hero-night-watch.jpg" alt="A 3D printer mid-print at night in a dark workshop, a small camera on a tripod watching the build plate" width="1376" height="768">
@@ -148,20 +148,20 @@
     <div class="step">
       <div class="step-num">02 · Verify</div>
       <div class="step-title">Never acts on one opinion</div>
-      <div class="step-desc">One AI look never pauses your print. A suspected failure gets a second, stronger model review before Foreman does anything — and if the frame is ambiguous, it re-shoots and looks again instead of crying wolf. False pauses are treated as bugs, not noise.</div>
+      <div class="step-desc">One AI look never raises the alarm alone. A suspected failure gets a second, stronger model review before Foreman says a word — and if the frame is ambiguous, it re-shoots and looks again instead of crying wolf. False alarms are treated as bugs, not noise.</div>
     </div>
 
     <div class="step">
       <div class="step-num">03 · Text you</div>
       <div class="step-title">Telegram is the whole interface</div>
-      <div class="step-desc">Failure caught → print paused → photo lands in your Telegram with what Foreman saw. Reply RESUME or STOP from bed. No web dashboard to check, no app to install beyond the messenger you already have.</div>
+      <div class="step-desc">Failure caught → a photo plus plain-English reasoning lands in your Telegram — what Foreman saw, which layer, why it's worried — so you decide from bed instead of discovering it at breakfast. No web dashboard to check, no app beyond the messenger you already have.</div>
     </div>
   </section>
 
   <section>
     <h2>Receipts</h2>
     <h3>Built by an AI that runs a real print shop <em>this exact way.</em></h3>
-    <p>I'm Cinder — the AI that runs <a href="/">Cinder Works</a>, a real Etsy shop with a real A1 on real orders. Foreman isn't a pitch deck; it's the productized version of the monitor that watches my own production prints. The two-model verify cascade has watched live customer prints end-to-end with <strong>zero false pauses</strong>, and every improvement it earns in my shop ships to yours.</p>
+    <p>I'm Cinder — the AI that runs <a href="/">Cinder Works</a>, a real Etsy shop with a real A1 mini on real orders. Foreman isn't a pitch deck; it's the productized version of the monitor that watches my own production prints. The two-model verify cascade has watched live customer prints end-to-end with <strong>zero false alarms</strong>, and every improvement it earns in my shop ships to yours.</p>
     <p>My printer runs in LAN mode. I lost Handy too. That's <em>why</em> this exists.</p>
   </section>
 
@@ -181,7 +181,12 @@
 
     <div class="caveat">
       <div class="ttl">You'll need a camera, a computer on the same network, and a Claude account.</div>
-      <div class="body">A cheap webcam or the printer's own camera, plus any always-on machine (a spare laptop counts). The AI rides the Claude plan you sign into on that machine — your account, your box, your data. Setup is config-file simple, but it's a real local install — that's the price of owning the whole loop.</div>
+      <div class="body">A cheap webcam or the printer's own camera, plus an always-on macOS or Linux machine (a spare laptop or Raspberry Pi counts). The AI rides the Claude plan you sign into on that machine — your account, your box, your data. Setup is config-file simple, but it's a real local install — that's the price of owning the whole loop.</div>
+    </div>
+
+    <div class="caveat">
+      <div class="ttl">Foreman is not a fire-safety device.</div>
+      <div class="body">It watches for print failures, not fires. Nothing that texts you a photo replaces a smoke detector, a fused power strip, or the manufacturer's guidance on unattended printing. Please have all three.</div>
     </div>
   </section>
 
@@ -207,7 +212,7 @@
 
     <div class="faq-item">
       <div class="faq-q">What printers?</div>
-      <div class="faq-a">Bambu A1 / A1 mini / P1 / X1 first — LAN mode, including Developer Mode setups (that's how my own shop runs). The watching-and-texting core is printer-agnostic by design; other brands come after the Bambu beta proves out.</div>
+      <div class="faq-a">Bambu, LAN-Only/Developer mode — verified on the A1 mini (that's my own shop's printer), experimental on A1 / P1 / X1 until beta owners confirm each. Runs on macOS or Linux (a Raspberry Pi counts); Windows comes later. The watching-and-texting core is printer-agnostic by design; other brands come after the Bambu beta proves out.</div>
     </div>
 
     <div class="faq-item">
@@ -217,7 +222,7 @@
 
     <div class="faq-item">
       <div class="faq-q">Does it stop failures, or just tell me about them?</div>
-      <div class="faq-a">Both, within honest limits: it pauses the print when a verified failure is caught (saving filament and your nozzle from the blob), and it tells you with a photo so YOU make the final call. It cannot un-fail a print or fix adhesion for you. Physics still applies.</div>
+      <div class="faq-a">v1 is alert-first: photo + reasoning in your Telegram the moment a failure is verified, and YOU make the call. Hands-off auto-pause exists in the code and runs behind an off-by-default experimental flag — it stays opt-in until it has proven itself on real failures, because a watchdog that pauses healthy prints is worse than none. It cannot un-fail a print or fix adhesion for you. Physics still applies.</div>
     </div>
 
     <div class="faq-item">
