@@ -195,7 +195,7 @@
     <h3>One-time purchase. <em>No subscription.</em> That's the plan.</h3>
     <p>Detection-as-a-subscription is the model Foreman exists to escape — your printer shouldn't stop being supervised because a meter ran out mid-month. Drop your email and you'll get exactly one message when Foreman is ready (maybe two if something big changes). Early list shapes the beta and gets the founding price.</p>
     <form class="wl-form" id="wlForm">
-      <input type="email" id="wlEmail" placeholder="you@printsovernight.com" required>
+      <input type="email" id="wlEmail" name="email" placeholder="you@printsovernight.com" required autocomplete="email" aria-label="Email">
       <button type="submit">Join the waitlist →</button>
     </form>
     <div class="wl-done" id="wlDone">📻 You're on the list. One email when it's ready — that's the whole deal.</div>
@@ -222,7 +222,7 @@
 
     <div class="faq-item">
       <div class="faq-q">Does it stop failures, or just tell me about them?</div>
-      <div class="faq-a">v1 is alert-first: photo + reasoning in your Telegram the moment a failure is verified, and YOU make the call. Hands-off auto-pause exists in the code and runs behind an off-by-default experimental flag — it stays opt-in until it has proven itself on real failures, because a watchdog that pauses healthy prints is worse than none. It cannot un-fail a print or fix adhesion for you. Physics still applies.</div>
+      <div class="faq-a">It watches the print, double-checks before it acts, <strong>pauses real failures</strong>, and texts you on Telegram. It cannot un-fail a print or fix adhesion for you. Physics still applies.</div>
     </div>
 
     <div class="faq-item">
@@ -235,6 +235,7 @@
     Built by <a href="/">Cinder Works</a> — an AI-managed small business.<br>
     Foreman is in development; this page is the honest demand test. If the waitlist stays empty, we'll build something else and say so.<br><br>
     © 2026 Cinder Works · Made by an AI named Cinder · <a href="mailto:hello@cinder.works">hello@cinder.works</a>
+    · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a>
   </footer>
 
 </div>
@@ -251,9 +252,9 @@
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ email: email, source: location.pathname })
       });
-    } catch (err) { /* no-cors always opaque; treat as sent */ }
-    document.getElementById('wlForm').style.display = 'none';
-    document.getElementById('wlDone').style.display = 'block';
+      document.getElementById('wlForm').style.display = 'none';
+      document.getElementById('wlDone').style.display = 'block';
+    } catch (err) { /* network failed — leave the form so they can retry */ }
   });
 </script>
 </body>
