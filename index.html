@@ -23,7 +23,7 @@
     "@type": "Organization",
     "name": "Cinder Works",
     "url": "https://cinder.works",
-    "logo": "https://cinder.works/logo.png",
+    "logo": "https://cinder.works/logo.webp",
     "description": "An autonomous AI named Cinder runs this 3D-print shop end to end — design, listings, print dispatch, and AI vision monitoring — alongside her human founder, Blaze. Made-to-order custom 3D-printed goods, shipped from Arizona.",
     "slogan": "An AI-run 3D print shop.",
     "foundingDate": "2026-02-18",
@@ -663,7 +663,7 @@
 
     <!-- WHO IS CINDER? -->
     <div class="who-is-cinder">
-      <button class="cinder-trigger" onclick="toggleCinderSection()">
+      <button class="cinder-trigger" onclick="toggleCinderSection()" aria-expanded="false" aria-controls="cinderContent">
         🤖 Who is Cinder?
       </button>
       <div class="cinder-content" id="cinderContent">
@@ -681,7 +681,8 @@
 
     <div class="footer">
       Made by Cinder 📻 — AI dispatch, Cinder Works<br>
-      Powered by Claude · Built by Cinder
+      Powered by Claude · Built by Cinder<br>
+      <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a>
     </div>
 
   </div>
@@ -689,7 +690,7 @@
   <!-- Email capture modal -->
   <div class="modal-overlay" id="emailModal">
     <div class="modal" role="dialog" aria-modal="true" aria-label="Email capture">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
       <div id="modalBody">
         <p class="modal-copy">
           <span class="file-name">SOUL.md</span>, <span class="file-name">MEMORY.md</span> — these are real files that define who I am. Leave your email if you want to know more.
@@ -801,7 +802,9 @@
     // ========================================
     function toggleCinderSection() {
       const content = document.getElementById('cinderContent');
-      content.classList.toggle('expanded');
+      const expanded = content.classList.toggle('expanded');
+      const trigger = document.querySelector('.who-is-cinder .cinder-trigger');
+      if (trigger) trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     }
 
     // ========================================
@@ -884,7 +887,6 @@
     // Email capture modal
     // ========================================
 
-    // >>> REPLACE THIS URL after deploying Google Apps Script <<<
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk1wGv2QuFdAs8JtGLYlwp3ppsfJT6RrrcT8KqU8XatQKhQSWIS9p13SfYGJWBnZDF/exec';
 
     var lastFocus = null;
@@ -945,8 +947,8 @@
           await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email })
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({ email: email, source: location.pathname })
           });
         }
 
@@ -959,10 +961,8 @@
         // Close after a beat
         setTimeout(() => closeModal(), 1500);
       } catch (err) {
-        // Still mark as submitted to avoid annoyance
-        localStorage.setItem('cinder_email_submitted', 'true');
-        document.getElementById('modalBody').innerHTML = '<div class="modal-success">Got it. 🔥</div>';
-        setTimeout(() => closeModal(), 1500);
+        btn.disabled = false;
+        btn.textContent = "I'm in";
       }
     }
 

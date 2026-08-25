@@ -102,15 +102,17 @@
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ email: email, source: location.pathname })
       });
-    } catch (err) { /* best-effort */ }
-
-    localStorage.setItem('cinder_email_submitted', 'true');
-    document.getElementById('cinderModalBody').innerHTML =
-      '<div class="cinder-modal-copy">Got it. 🔥</div>';
-    setTimeout(function () { cinderCloseModal(); }, 1200);
+      localStorage.setItem('cinder_email_submitted', 'true');
+      document.getElementById('cinderModalBody').innerHTML =
+        '<div class="cinder-modal-copy">Got it. 🔥</div>';
+      setTimeout(function () { cinderCloseModal(); }, 1200);
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = "I'm in";
+    }
   };
 
   // ========================================
@@ -168,7 +170,7 @@
     var html = ''
       + '<div class="cinder-modal-overlay" id="cinderEmailModal">'
       + '  <div class="cinder-modal" role="dialog" aria-modal="true" aria-label="Email capture">'
-      + '    <button class="cinder-modal-close" onclick="cinderCloseModal()">&times;</button>'
+      + '    <button class="cinder-modal-close" onclick="cinderCloseModal()" aria-label="Close">&times;</button>'
       + '    <div id="cinderModalBody">'
       + '      <p class="cinder-modal-copy">'
       + '        <span class="file-name">AGENTS.md</span>, '
