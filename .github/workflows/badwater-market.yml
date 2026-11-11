@@ -1,0 +1,117 @@
+name: Badwater Market refresh
+
+# Keeps /wow current. Every 10 minutes: one small request asks AHledger whether it has a newer full
+# scan than the page shows. If not, the job ends there. If so, it rebuilds the whole page (prices and
+# every call, bar and craft worked out together) and deploys it. Runs on this public repo's free
+# Actions minutes; no AI model is involved.
+#
+# The build recipe is kept in a private repository and fetched with a read-only key. Nothing from it
+# is committed here or printed in these logs: only the two built files, wow/index.html and
+# wow/icons.jpg, are published. Secrets (repo settings): BADWATER_RECIPE_REPO, BADWATER_RECIPE_KEY,
+# AHLEDGER_API_KEY. Prices from AHledger (https://ahledger.com).
+#
+# To pause: Actions tab, this workflow, Disable workflow. To run now: Run workflow (tick "force" to
+# rebuild without a newer scan). Pushes made with GITHUB_TOKEN do not start deploy.yml, so this job
+# deploys to gh-pages itself, the same way deploy.yml does.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild even if AHledger has no newer scan"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TZ: America/Phoenix  # the page's dates (Darkmoon Faire, launch day) are local days there
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the build recipe
+        env:
+          RECIPE_REPO: ${{ secrets.BADWATER_RECIPE_REPO }}
+          RECIPE_KEY: ${{ secrets.BADWATER_RECIPE_KEY }}
+        run: |
+          set -eu
+          install -m 700 -d "$RUNNER_TEMP/ssh"
+          printf '%s\n' "$RECIPE_KEY" > "$RUNNER_TEMP/ssh/key"
+          chmod 600 "$RUNNER_TEMP/ssh/key"
+          export GIT_SSH_COMMAND="ssh -i $RUNNER_TEMP/ssh/key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+          if ! git clone -q --depth 1 "git@github.com:${RECIPE_REPO}.git" "$RUNNER_TEMP/recipe" > /dev/null 2>&1; then
+            rm -rf "$RUNNER_TEMP/ssh"
+            echo "Could not fetch the build recipe."
+            exit 1
+          fi
+          rm -rf "$RUNNER_TEMP/ssh" "$RUNNER_TEMP/recipe/.git"
+          echo "Recipe fetched."
+
+      - name: Build the page if AHledger has a newer scan
+        env:
+          AHLEDGER_API_KEY: ${{ secrets.AHLEDGER_API_KEY }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          set +e -u  # a failed build must still reach the lines below, which report it without showing the recipe
+          cd "$RUNNER_TEMP/recipe"
+          rm -rf tools/guild-market/dist
+          if [ "$FORCE" = "true" ]; then
+            python3 tools/guild-market/build.py > "$RUNNER_TEMP/build.log" 2>&1
+          else
+            python3 tools/guild-market/build.py --since "$GITHUB_WORKSPACE/wow/index.html" > "$RUNNER_TEMP/build.log" 2>&1
+          fi
+          status=$?
+          # show only the build's own status lines, never a path or a line of the recipe
+          grep -E "^(NOTHING TO DO|NOT BUILT|due:|skipped |[0-9]+ of [0-9]+ items listed)" "$RUNNER_TEMP/build.log" | sed -E 's/ \| Prices from AHledger.*$//' || true
+          if [ "$status" -ne 0 ]; then
+            echo "The build failed (exit $status)."
+            exit 1
+          fi
+
+      - name: Commit the new page
+        id: commit
+        run: |
+          set -eu
+          built="$RUNNER_TEMP/recipe/tools/guild-market/dist"
+          if [ ! -f "$built/index.html" ]; then
+            echo "No newer scan: nothing to publish."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          cp "$built/index.html" "$built/icons.jpg" wow/
+          git add wow/index.html wow/icons.jpg
+          if git diff --cached --quiet; then
+            echo "The built page is identical: nothing to publish."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Badwater Market: rebuild from the newest AHledger scan"
+          git push -q
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Remove the recipe before deploying
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/recipe" "$RUNNER_TEMP/build.log" "$RUNNER_TEMP/ssh"
+
+      - name: Deploy to GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
+          clean: true
+          clean-exclude: pr-preview
+          force: false
