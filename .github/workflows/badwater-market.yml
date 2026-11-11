@@ -16,7 +16,7 @@ name: Badwater Market refresh
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "3-59/10 * * * *"  # minutes 3, 13, 23...: off the round minutes, where GitHub drops the most timed runs
   workflow_dispatch:
     inputs:
       force:
